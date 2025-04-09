@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "../include/prueba.h"
-//Probando esta vaina 555
+//Probando esta vaina 555 5585
 using namespace std;
 
 string imprimirPiramide(int altura){
