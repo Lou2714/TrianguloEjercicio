@@ -16,6 +16,7 @@ pipeline {
         stage('Getting test repository'){
             steps{
                 git(
+                    url: "${REPO_ESTUDIANTE}",
                     url: "${REPO_PRUEBAS}",
                     credentialsId: 'ProbandoJenkins',
                     branch: 'main'
@@ -27,6 +28,7 @@ pipeline {
                 script{
                     def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
                     def reponame = repoURL.split('/').last().replace('.git', '')
+                    echo "${reponame}"
                 }
             }
         }
