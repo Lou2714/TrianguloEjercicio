@@ -12,6 +12,11 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Checking directory'){
+            steps{
+                sh 'ls -la'
+            }
+        }
         stage('Checking credentials'){
             steps{
                 sh 'echo "Service user is $REPO_PRUEBAS_CREDENTIALS_USR"'
