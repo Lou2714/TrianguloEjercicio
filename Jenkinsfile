@@ -36,10 +36,9 @@ pipeline {
                 sh 'ls -la'
             }
         }
-        stage('Checking credentials'){
-            steps{
-                sh 'echo "Service user is $REPO_PRUEBAS_CREDENTIALS_USR"'
-                sh 'echo "Service password is $REPO_PRUEBAS_CREDENTIALS_PSW"'
+        stage('Debug') {
+            steps {
+                sh 'pwd && ls -la'
             }
         }
     }
