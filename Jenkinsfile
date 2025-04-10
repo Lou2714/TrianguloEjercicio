@@ -30,7 +30,8 @@ pipeline {
                     def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
                     def reponame = repoURL.split('/').last().replace('.git', '')
                     echo "${reponame}"
-                    sh 'cd testing && ls -la'
+                    //sh 'cd testing && ls -la'
+                    sh 'mv testing/* .'
                     /*
                     sh("""
                         mv "repos/${reponame}/" /home/testingVM/workspace/Prueba 
