@@ -19,14 +19,11 @@ pipeline {
         }
         stage('Getting test repository'){
             steps{
-                dir('PruebasCatch2'){
-                    git(
+                git(
                         url: "${REPO_PRUEBAS}",
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
                     )
-                }
-                
             }
         }
         stage('Checking directory'){
