@@ -29,6 +29,10 @@ pipeline {
         stage('Checking directory'){
             steps{
                 sh 'ls -la'
+                sh 'cd PruebasCatch2'
+                sh 'ls -la'
+                sh 'cd .'
+                sh 'ls -la'
             }
         }
         stage('Checking credentials'){
