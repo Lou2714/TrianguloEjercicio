@@ -24,7 +24,9 @@ pipeline {
         }
         stage('Checking directoryx2'){
             steps{
+                '''
                 sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
+                '''
             }
         }
         stage('Debug') {
