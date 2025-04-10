@@ -20,17 +20,11 @@ pipeline {
                     credentialsId: 'ProbandoJenkins',
                     branch: 'main'
                 )
-                script{
-                    sh(script: "${REPO_PRUEBAS}", returnStdout: true).trim()
-                }
             }
         }
         stage('Checking directoryx2'){
             steps{
-                sh '''
-                    cd Repositorios
-                    pwd && ls -la
-                '''
+                sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
             }
         }
         stage('Debug') {
