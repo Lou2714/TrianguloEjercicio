@@ -8,20 +8,22 @@ pipeline {
         REPO_PRUEBAS_CREDENTIALS = credentials('ProbandoJenkins')
     }
     stages{
-        stage('Preparing enviorement'){
+        stage('Checking SCM'){
             steps{
-                dir('Repositorios'){
+                checkout scm
+            }
+        }
+        stage('Getting test repository'){
+            steps{
                 git(
-                        url: "${REPO_ESTUDIANTE}",
-                        credentialsId: 'ProbandoJenkins',
-                        branch: 'main'
-                    )
-                    /*
-                git(
-                        url: "${REPO_PRUEBAS}",
-                        credentialsId: 'ProbandoJenkins',
-                        branch: 'main'
-                    ) */
+                    url: "${REPO_PRUEBAS}",
+                    credentialsId: 'ProbandoJenkins',
+                    branch: 'main'
+                )
+                script{
+                    def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
+                    def reponame = repoURL.split('/').last().replace('.git', '')
+                    echo "reponame"
                 }
             }
         }
