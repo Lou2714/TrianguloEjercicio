@@ -18,6 +18,11 @@ pipeline {
                 
                 dir('repos'){
                     git(
+                        url: "${REPO_ESTUDIANTE}",
+                        credentialsId: 'ProbandoJenkins',
+                        branch: 'main'
+                    )
+                    git(
                         url: "${REPO_PRUEBAS}",
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
