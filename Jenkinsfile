@@ -21,7 +21,7 @@ pipeline {
                     branch: 'main'
                 )
                 script{
-                    echo "sh(script: "${REPO_PRUEBAS}", returnStdout: true).trim()"
+                    sh(script: "${REPO_PRUEBAS}", returnStdout: true).trim()
                 }
             }
         }
