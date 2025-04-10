@@ -15,11 +15,13 @@ pipeline {
         }
         stage('Getting test repository'){
             steps{
-                git(
-                    url: "${REPO_PRUEBAS}",
-                    credentialsId: 'ProbandoJenkins',
-                    branch: 'main'
-                )
+                dir('testing'){
+                    git(
+                        url: "${REPO_PRUEBAS}",
+                        credentialsId: 'ProbandoJenkins',
+                        branch: 'main'
+                    )
+                }
             }
         }
         stage('Move test directory'){
