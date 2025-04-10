@@ -17,6 +17,11 @@ pipeline {
                     )
             }
         }
+        stage('Checking directoryx2'){
+            steps{
+                sh 'ls -la'
+            }
+        }
         stage('Getting test repository'){
             steps{
                 git(
@@ -28,10 +33,6 @@ pipeline {
         }
         stage('Checking directory'){
             steps{
-                sh 'ls -la'
-                sh 'cd PruebasCatch2'
-                sh 'ls -la'
-                sh 'cd .'
                 sh 'ls -la'
             }
         }
