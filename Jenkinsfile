@@ -11,6 +11,8 @@ pipeline {
         stage('Checking SCM'){
             steps{
                 checkout scm
+                sh 'pwd'
+                sh 'ls -la'
             }
         }
         stage('Getting test repository'){
