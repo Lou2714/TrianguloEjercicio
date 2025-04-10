@@ -25,7 +25,8 @@ pipeline {
         stage('Checking directoryx2'){
             steps{
                 script{
-                    sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
+                    def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
+                    def reponame = repoURL.split('/').last().replace('.git', '')
                 }
             }
         }
