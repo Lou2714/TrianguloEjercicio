@@ -26,7 +26,10 @@ pipeline {
         }
         stage('Checking directoryx2'){
             steps{
-                sh 'ls -la'
+                sh '''
+                    cd Repositorios
+                    pwd && ls -la
+                '''
             }
         }
         stage('Debug') {
@@ -37,6 +40,7 @@ pipeline {
     }
     post { 
         always { 
+            cleanWs()
             echo 'I will always say Hello again!'
         }
     }
