@@ -11,8 +11,6 @@ pipeline {
         stage('Checking SCM'){
             steps{
                 checkout scm
-                sh 'pwd'
-                sh 'ls -la'
             }
         }
         stage('Getting test repository'){
@@ -24,13 +22,7 @@ pipeline {
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
                     )
-                    git(
-                    url: "${REPO_ESTUDIANTE}",
-                    credentialsId: 'ProbandoJenkins',
-                    branch: 'main'
-                )
                 }
-                sh 'pwd && ls -la'
             }
         }
         stage('Move test directory'){
@@ -39,11 +31,11 @@ pipeline {
                     def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
                     def reponame = repoURL.split('/').last().replace('.git', '')
                     echo "${reponame}"
-                    sh 'cd repos && ls -la'
-                    /*
+                    //sh 'cd repos && ls -la'
+
                     sh("""
-                        mv "${reponame}/*" /home/testingVM/workspace/Prueba 
-                    """) */
+                        mv "repos/${reponame}/*" /home/testingVM/workspace/Prueba 
+                    """) 
                 }
             }
         }
