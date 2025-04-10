@@ -17,7 +17,7 @@ pipeline {
             steps{
                 git(
                     url: "${REPO_PRUEBAS}",
-                    credentialsId: '$REPO_PRUEBAS_CREDENTIALS',
+                    credentialsId: 'ProbandoJenkins',
                     branch: 'main'
                 )
                 script{
