@@ -33,6 +33,7 @@ pipeline {
                     credentialsId: 'ProbandoJenkins',
                     branch: 'main'
                 )
+                sh 'pwd && ls -la'
             }
         }
         stage('Move test directory'){
