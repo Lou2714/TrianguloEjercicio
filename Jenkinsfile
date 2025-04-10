@@ -16,11 +16,12 @@ pipeline {
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
                     )
+                    /*
                 git(
                         url: "${REPO_PRUEBAS}",
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
-                    )
+                    ) */
                 }
             }
         }
