@@ -7,24 +7,27 @@ pipeline {
         REPO_ESTUDIANTE = 'https://github.com/Lou2714/TrianguloEjercicio.git'
         REPO_PRUEBAS_CREDENTIALS = credentials('ProbandoJenkins')
     }
-    stages{
+    stages{ /*
         stage('Checking SCM'){
             steps{
                 checkout scm
             }
-        }
+        }*/
         stage('Getting test repository'){
             steps{
+                dir('repos'){
+                    checkout scm
+                    git(
+                        url: "${REPO_PRUEBAS}",
+                        credentialsId: 'ProbandoJenkins',
+                        branch: 'main'
+                    )
+                }/*
                 git(
                     url: "${REPO_ESTUDIANTE}",
                     credentialsId: 'ProbandoJenkins',
                     branch: 'main'
-                )
-                git(
-                    url: "${REPO_PRUEBAS}",
-                    credentialsId: 'ProbandoJenkins',
-                    branch: 'main'
-                )
+                )*/
             }
         }
         stage('Checking directoryx2'){
@@ -38,6 +41,8 @@ pipeline {
         }
         stage('Debug') {
             steps {
+                sh 'cd repos && ls -la'
+
                 sh 'pwd && ls -la'
             }
         }
