@@ -15,7 +15,11 @@ pipeline {
         }
         stage('Getting test repository'){
             steps{
-                sh "git clone --branch main ${REPO_PRUEBAS}"
+                git(
+                    url: "${REPO_PRUEBAS}",
+                    credentialsId: 'ProbandoJenkins',
+                    branch: 'main'
+                )
             }
         }
         stage('Move test directory'){
@@ -24,11 +28,10 @@ pipeline {
                     def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
                     def reponame = repoURL.split('/').last().replace('.git', '')
                     echo "${reponame}"
-                    //sh 'cd repos && ls -la'
-
+                    /*
                     sh("""
-                        mv "${reponame}/" /home/testingVM/workspace/Prueba 
-                    """) 
+                        mv "repos/${reponame}/" /home/testingVM/workspace/Prueba 
+                    """) */
                 }
             }
         }
