@@ -10,28 +10,21 @@ pipeline {
     stages{
         stage('Preparing enviorement'){
             steps{
+                dir('Repositorios'){
                 git(
                         url: "${REPO_ESTUDIANTE}",
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
                     )
-            }
-        }
-        stage('Checking directoryx2'){
-            steps{
-                sh 'ls -la'
-            }
-        }
-        stage('Getting test repository'){
-            steps{
                 git(
                         url: "${REPO_PRUEBAS}",
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
                     )
+                }
             }
         }
-        stage('Checking directory'){
+        stage('Checking directoryx2'){
             steps{
                 sh 'ls -la'
             }
