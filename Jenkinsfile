@@ -14,16 +14,21 @@ pipeline {
         }
         stage('Getting test repository'){
             steps{
-                git(
+                dir('PruebasCatch2'){
+                    git(
                         url: 'https://github.com/Lou2714/PruebasCatch2.git',
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
                     )
+                }
+                
             }
         }
         stage('Checking directory'){
             steps{
-                sh 'ls -la'
+                dir('PruebasCatch2'){
+                    sh 'ls -la'
+                }
             }
         }
         stage('Checking credentials'){
