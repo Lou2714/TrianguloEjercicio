@@ -17,13 +17,11 @@ pipeline {
             steps{
                 git(
                     url: "${REPO_PRUEBAS}",
-                    credentialsId: 'ProbandoJenkins',
+                    credentialsId: '$REPO_PRUEBAS_CREDENTIALS',
                     branch: 'main'
                 )
                 script{
-                    def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
-                    def reponame = repoURL.split('/').last().replace('.git', '')
-                    echo "reponame"
+                    echo "${REPO_PRUEBAS}"
                 }
             }
         }
