@@ -4,19 +4,24 @@ pipeline {
     }
     environment { 
         REPO_PRUEBAS = 'https://github.com/Lou2714/PruebasCatch2.git'
+        REPO_ESTUDIANTE = 'https://github.com/Lou2714/TrianguloEjercicio.git'
         REPO_PRUEBAS_CREDENTIALS = credentials('ProbandoJenkins')
     }
     stages{
         stage('Preparing enviorement'){
             steps{
-                checkout scm
+                git(
+                        url: "${REPO_ESTUDIANTE}",
+                        credentialsId: 'ProbandoJenkins',
+                        branch: 'main'
+                    )
             }
         }
         stage('Getting test repository'){
             steps{
                 dir('PruebasCatch2'){
                     git(
-                        url: 'https://github.com/Lou2714/PruebasCatch2.git',
+                        url: "${REPO_PRUEBAS}",
                         credentialsId: 'ProbandoJenkins',
                         branch: 'main'
                     )
@@ -26,9 +31,7 @@ pipeline {
         }
         stage('Checking directory'){
             steps{
-                dir('PruebasCatch2'){
-                    sh 'ls -la'
-                }
+                sh 'ls -la'
             }
         }
         stage('Checking credentials'){
