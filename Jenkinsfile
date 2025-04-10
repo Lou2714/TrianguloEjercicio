@@ -26,23 +26,21 @@ pipeline {
         }
         stage('Move test directory'){
             steps{
-                script{
-                    def repoURL = sh(script: "echo ${REPO_PRUEBAS}", returnStdout: true).trim()
-                    def reponame = repoURL.split('/').last().replace('.git', '')
-                    echo "${reponame}"
-                    //sh 'cd testing && ls -la'
-                    sh 'mv testing/* .'
-                    /*
-                    sh("""
-                        mv "repos/${reponame}/" /home/testingVM/workspace/Prueba 
-                    """) */
-                }
+                sh 'mv testing/* .'
+            }
+        }
+        stage('Execute test'){
+            steps{
+                sh ("""
+                    mkdir -p build
+                    cmake -S . -B build
+                    cmake --build build
+                    ctest --test-dir build -O test-result.log --output-junit results.xml || true
+                """)
             }
         }
         stage('Debug') {
             steps {
-                //sh 'cd repos && ls -la'
-
                 sh 'pwd && ls -la'
             }
         }
